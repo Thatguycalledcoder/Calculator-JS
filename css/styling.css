@@ -1,0 +1,90 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.result-section {
+    background-color: black;
+    border-radius: 8px;
+    height: 60px;
+    width: 370px;
+    padding: 16px;
+    text-align: end;
+}
+#all-input {
+    font-size: 14px;
+    color: darkorange;
+    font-weight: 600;
+}
+.form {
+    text-align: start;
+}
+.inputs {
+    display: flex;    
+}
+#current-input {
+    font-size: 42px;
+    color: white;
+    text-align: end;
+    font-weight: 800;
+    width: 100%;
+    flex: auto;
+}
+#keyin {
+    background-color: inherit;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: 30%;
+    outline: none;
+    text-align: start;
+}
+#keyin:hover {
+    background-color: white;
+}
+#keyin:focus {
+    background-color: black;
+}
+.input-section {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: black;
+    border-radius: 8px;
+    width: 400px;
+    height: 400px;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+.input-section button {
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: inherit;
+}
+.input-section #clear {
+    background-color: red;
+}
+.input-section #clear:hover {
+    background-color: rgb(228, 0, 0);
+}
+.input-section #operator {
+    background-color: lightblue;
+}
+.input-section #operator:hover {
+    background-color: rgb(159, 197, 210);
+}
+.input-section #input {
+    background-color: greenyellow;
+}
+.input-section #input:hover {
+    background-color: rgb(145, 215, 39);
+}
+.input-section #backspace:hover {
+    background-color: rgb(223, 223, 223);
+}
+.two-rows {
+    grid-row: span 2;
+}
+.two-cols {
+    grid-column: span 2;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cacus</title>
+    <link rel="stylesheet" href="./css/styling.css">
+    <script src="./js/calculator.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="result-section">
+            <small id="all-input"></small>
+            <div class="inputs">
+                <form class="form">
+                    <input type="text" id="keyin">
+                    <input type="reset" id="reset" hidden>
+                </form>
+                <div id="current-input"></div>
+            </div>
+        </div>
+        <div class="input-section">
+            <!-- AC ; / ; * ; backspace -->
+            <button id="clear">AC</button>
+            <button id="operator">/</button>
+            <button id="operator">*</button>
+            <button id="backspace">&lArr;</button>
+            <!-- 7 ; 8 ; 9 ; - -->
+            <button id="input">7</button>
+            <button id="input">8</button>
+            <button id="input">9</button>
+            <button id="operator">-</button>
+            <!-- 4 ; 5 ; 6 ; +-->
+            <button id="input">4</button>
+            <button id="input">5</button>
+            <button id="input">6</button>
+            <button id="operator">+</button>
+            <!-- 1 ; 2 ; 3 ; = -->
+            <button id="input">1</button>
+            <button id="input">2</button>
+            <button id="input">3</button>
+            <button class="two-rows" id="operator">=</button>
+            <!-- 0 ; . -->
+            <button id="input">0</button>
+            <button class="two-cols disable" id="input">.</button>
+        </div>
+    </main>
+</body>
+
+</html>
