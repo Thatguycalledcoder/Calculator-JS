@@ -14,6 +14,7 @@ let result = undefined,
     n2 = undefined,
     dot_count = 1,
     sub_count = 0,
+    zero_count = 0,
     current_input = '',
     all_input = '',
     previous = '';
@@ -30,6 +31,7 @@ function clear_inputs() {
     n2 = undefined;
     sub_count = 0;
     dot_count = 1;
+    zero_count = 0;
     current_input = '';
     all_input = '';
     dot_button.removeAttribute('disabled');
@@ -72,7 +74,7 @@ function operator_func(operator) {
         // Checks if there have been previous computations
         if (result != undefined) {
             operate(result, parseFloat(current_input), previous);
-            result = Math.round(result * 100) / 100;
+            result = Math.round(result * 100000) / 100000;
             display.textContent = result;
             clear_inputs();
         } 
@@ -84,7 +86,7 @@ function operator_func(operator) {
         // Checks if only two inputs have been given
         else {
             operate(n1, parseFloat(current_input), previous);
-            result = Math.round(result * 100) / 100;
+            result = Math.round(result * 100000) / 100000;
             display.textContent = result;
             clear_inputs();
         }
@@ -103,7 +105,7 @@ function operator_func(operator) {
             n2 = parseFloat(current_input);
             current_input = "";
             operate(n1, n2, previous);
-            result = Math.round(result * 100) / 100;
+            result = Math.round(result * 100000) / 100000;
             display.textContent = result;
             previous = operator;
             sub_count = 0;
@@ -118,7 +120,7 @@ function operator_func(operator) {
             n2 = parseFloat(current_input);
             current_input = "";
             operate(n1, n2, previous);
-            result = Math.round(result * 100) / 100;
+            result = Math.round(result * 100000) / 100000;
             display.textContent = result;
             previous = operator
             sub_count = 0;
@@ -127,6 +129,7 @@ function operator_func(operator) {
         all_display.textContent = all_input;
         dot_button.removeAttribute('disabled');
         dot_count++;
+        zero_count--;
     }
     else {
         alert("Please enter an input")
@@ -137,6 +140,15 @@ function inputs_func(input) {
     if (input === '.' && dot_count === 1) {
         dot_count--;
         dot_button.setAttribute('disabled', true);
+        if (zero_count === 1) {
+            zero_count--;
+        }
+    }
+    if (input === '0' && zero_count === 1 && dot_count === 1) {
+        return 'invalid';
+    }
+    else if (input === '0' && zero_count === 0) {
+        zero_count++;
     }
     current_input += input;
     all_input += input;
@@ -148,6 +160,9 @@ function backspace_func() {
         if (current_input.endsWith('.')) {
             dot_button.removeAttribute('disabled');
             dot_count++;
+        }
+        if (current_input.endsWith('0') && dot_count === 1) {
+            zero_count--;
         }
         current_input = current_input.slice(0, -1);
         all_input = all_input.slice(0, -1);
