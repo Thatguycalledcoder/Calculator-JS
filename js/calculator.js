@@ -4,6 +4,7 @@ const all_display = document.querySelector('#all-input'),
     clear_button = document.querySelector('#clear'),
     backspace_button = document.querySelector('#backspace'),
     dot_button = document.querySelector('.disable'),
+    zero_button = document.querySelector('.zero'),
     input_buttons = document.querySelectorAll('#input'),
     operators = document.querySelectorAll('#operator'),
     key_input = document.querySelector('#keyin'),
@@ -35,6 +36,7 @@ function clear_inputs() {
     current_input = '';
     all_input = '';
     dot_button.removeAttribute('disabled');
+    zero_button.removeAttribute('disabled');
 }
 function divide(num1, num2) {
     if (num2 === 0) {
@@ -59,6 +61,10 @@ function operate(num1, num2, operator) {
         case '/':
             result = divide(num1, num2);
             break;
+    }
+    if (zero_count === 1) {
+        zero_count--;
+        zero_button.removeAttribute('disabled');
     }
 }
 // Clears all input and display data
@@ -129,7 +135,6 @@ function operator_func(operator) {
         all_display.textContent = all_input;
         dot_button.removeAttribute('disabled');
         dot_count++;
-        zero_count--;
     }
     else {
         alert("Please enter an input")
@@ -140,15 +145,17 @@ function inputs_func(input) {
     if (input === '.' && dot_count === 1) {
         dot_count--;
         dot_button.setAttribute('disabled', true);
-        if (zero_count === 1) {
+        if (zero_count === 1 && dot_count === 0) {
             zero_count--;
+            zero_button.removeAttribute('disabled');
         }
     }
     if (input === '0' && zero_count === 1 && dot_count === 1) {
         return 'invalid';
     }
-    else if (input === '0' && zero_count === 0) {
+    else if (input === '0' && zero_count === 0 && dot_count === 1) {
         zero_count++;
+        zero_button.setAttribute('disabled', true);
     }
     current_input += input;
     all_input += input;
@@ -163,6 +170,7 @@ function backspace_func() {
         }
         if (current_input.endsWith('0') && dot_count === 1) {
             zero_count--;
+            zero_button.removeAttribute('disabled');
         }
         current_input = current_input.slice(0, -1);
         all_input = all_input.slice(0, -1);
